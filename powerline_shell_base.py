@@ -5,12 +5,28 @@ from __future__ import print_function
 import argparse
 import os
 import sys
+import re
 
 py3 = sys.version_info.major == 3
 
 
 def warn(msg):
     print('[powerline-bash] ', msg)
+
+
+SPLIT_PATTERN = re.compile(r'(\W+)')
+REPLACE_PATTERN = re.compile(r'[eyuioa]', re.IGNORECASE)
+
+
+def shorten_word(word):
+    if not word:
+        return word
+    return word[0] + REPLACE_PATTERN.sub('', word[1:])
+
+def shorten(msg):
+    return ''.join(
+        shorten_word(word) for word in SPLIT_PATTERN.split(msg)
+    )
 
 
 class Powerline:
