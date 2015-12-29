@@ -14,7 +14,7 @@ def warn(msg):
     print('[powerline-bash] ', msg)
 
 
-SPLIT_PATTERN = re.compile(r'(\W+)')
+SPLIT_PATTERN = re.compile(r'([^A-Za-z0-9]+)')
 REPLACE_PATTERN = re.compile(r'[eyuioa]', re.IGNORECASE)
 
 
